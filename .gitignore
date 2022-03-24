@@ -71,4 +71,6 @@ crashlytics-build.properties
 PCM Game Jam/[Aa]ssets/[Ss]treamingAssets/aa.meta
 PCM Game Jam/[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Files contributers for some reason have in their unity projects
 *.vsconfig
+*.DS_Store
