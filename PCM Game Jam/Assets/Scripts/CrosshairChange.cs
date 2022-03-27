@@ -25,7 +25,7 @@ public class CrosshairChange : MonoBehaviour
         }
         else
         {
-            interact.SetActive(false);
+            interact.SetActive(false);  
             circle.SetActive(true);
         }
     }
