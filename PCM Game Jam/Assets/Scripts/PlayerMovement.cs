@@ -5,19 +5,19 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     
-    public CharacterController controller;
-    public float speed;
-    public float acceleration;
-    public Transform groundCheck;
-    public float groundDistance;
-    public LayerMask groundMask;
-    public float jumpHeight;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private float speed;
+    [SerializeField] private float acceleration;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float jumpHeight;
 
-    bool isGrounded;
-    Vector3 velocity;
+    private bool isGrounded;
+    private Vector3 velocity;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         float actualSpeed = speed;
 
