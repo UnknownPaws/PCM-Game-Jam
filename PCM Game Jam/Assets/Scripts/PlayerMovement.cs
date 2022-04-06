@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDistance;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float jumpHeight;
+    [SerializeField] private bool airSlow;
 
     private bool isGrounded;
     private Vector3 velocity;
@@ -33,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                actualSpeed = speed / 1.5f;
+                if (airSlow) actualSpeed = speed / 1.5f;
             }
 
             float x = Input.GetAxis("Horizontal");

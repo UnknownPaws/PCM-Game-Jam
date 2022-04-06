@@ -49,7 +49,7 @@ public class Teleport : MonoBehaviour
 
     private IEnumerator TeleportPlayer()
     {
-        Debug.Log(p_transform.eulerAngles.y);
+        // Debug.Log(p_transform.eulerAngles.y);
         float y = p_transform.eulerAngles.y;
         movement.disabled = true;
         yield return new WaitForSeconds(tpWaitTime/2);
