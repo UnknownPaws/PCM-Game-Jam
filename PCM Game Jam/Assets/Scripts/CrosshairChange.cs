@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class CrosshairChange : MonoBehaviour
 {
+
+    //can this script can be used for other things other than canvas?
     [SerializeField] private GameObject circle;
     [SerializeField] private GameObject interact;
-    [SerializeField] private LayerMask layer;
     [SerializeField] [Range(0f, 20f)] private float rayDistance;
 
-    private bool hit;
+    private RaycastHit hit;
 
     private void Update()
     {
+
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * rayDistance),
-            hit ? Color.green : Color.red, 0.01f);
-        if (hit)
+            CheckHit() ? Color.green : Color.red, 0.01f);
+        if (CheckHit())
         {
             interact.SetActive(true);
             circle.SetActive(false);
@@ -29,11 +31,17 @@ public class CrosshairChange : MonoBehaviour
 
     public bool CheckHit()
     {
-        return Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), rayDistance, layer);
+        return Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, rayDistance, LayerMask.GetMask("Interactable"));
+    }
+
+    public RaycastHit GetRaycast()
+    {
+        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, rayDistance, LayerMask.GetMask("Interactable"));
+        return hit;
     }
 
     private void FixedUpdate()
     {
-        hit = CheckHit();
+        GetRaycast();
     }
 }

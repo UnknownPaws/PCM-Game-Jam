@@ -7,18 +7,26 @@ public class DeleteOnInteract : MonoBehaviour
     [SerializeField] private GameObject toDelete;
     [SerializeField] private CrosshairChange crosshair;
 
-
-    // Start is called before the first frame update
-
+    private void Start()
+    {
+        if (toDelete == null)
+        {
+            toDelete = gameObject;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        var hit = crosshair.CheckHit();
+        RaycastHit hit = crosshair.GetRaycast();
 
-        if (hit && Input.GetAxis("Fire1") != 0)
+        if (Input.GetAxis("Fire1") > 0.5 && crosshair.CheckHit() && hit.collider.CompareTag("Canvas"))
         {
-            toDelete.SetActive(false);
+//            toDelete.SetActive(false); // This would deactivate any firther potential to run other scripts on the same gameObject
+
+            // This on the other hand allows scripts on the object to run (to open canvas HUD) but it will disapear for player
+            toDelete.GetComponent<MeshRenderer>().enabled = false;
+            toDelete.GetComponent<SphereCollider>().enabled = false;
         }
     }
 }
